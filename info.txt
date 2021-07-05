@@ -1,0 +1,4 @@
+endpoints
+listar usuarios, quitar usuario,out detail register, entrada detail register, view detail 10, buscar familiar, aprobar familiar, sumar , restar
+realizados
+login,register,
