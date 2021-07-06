@@ -10,4 +10,12 @@ type Details struct {
 	Type   string    `json:"type"`
 	Amount float32   `json:"amount"`
 	Detail string    `json:"detail"`
+
+
+
+
+
+
+
+	
 }
