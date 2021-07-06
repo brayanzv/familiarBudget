@@ -1,15 +1,13 @@
 package models
 
 import (
-	"time"
-
 	"github.com/jinzhu/gorm"
 )
 
-type Detail struct {
+type Details struct {
 	gorm.Model
-	Type   string    `json: "type"`
-	Amount float32   `json: "amount"`
-	Date   time.Time `json: "date"`
-	Detail string    `json: "detail"`
+	Id_user int `json:"id_user"`
+	Type   string    `json:"type"`
+	Amount float32   `json:"amount"`
+	Detail string    `json:"detail"`
 }

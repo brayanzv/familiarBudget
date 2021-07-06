@@ -2,7 +2,6 @@ package routers
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/brayanzv/FamiliarBudget2/bd"
 	"github.com/brayanzv/FamiliarBudget2/models"
 	"github.com/gorilla/mux"
@@ -28,8 +27,6 @@ func UsersListCodFamily(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Debe ingresar correctamente su codigo de familia", 401)
 		return
 	}
-	fmt.Println(IDCodF+"handler")
-	fmt.Println(CodFamiliar+"este")
 
 	result,status,c:=bd.GetUsers()
 	if status== true {

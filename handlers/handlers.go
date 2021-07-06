@@ -28,6 +28,8 @@ func Handler() {
 	router.HandleFunc("/family/{codFamily}/users", middlew.ValidatorJWT(routers.UsersListCodFamily)).Methods("GET")
 	router.HandleFunc("/family/{codFamily}/users/{user_id}", middlew.ValidatorJWT(routers.UsersFamilyModify)).Methods("PUT")
 
+	//user detalle
+	router.HandleFunc("/users/{user_id}/detail",middlew.ValidatorJWT(routers.DetailRegister)).Methods("POST")
 
 	//router.HandleFunc("/transactions", middlew.ValidatorJWT(routers.RegisterSpend)).Methods("GET")
 	//router.HandleFunc("/transactions/{transaction_id}", middlew.ValidatorJWT(routers.RegisterSpend)).Methods("GET")
