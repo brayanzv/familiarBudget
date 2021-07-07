@@ -10,6 +10,7 @@ import (
 	"github.com/brayanzv/FamiliarBudget2/models"
 )
 
+//valida la informacion enviada en el body y sus credenciales
 func DetailRegister(w http.ResponseWriter, r *http.Request) {
 	vars:=mux.Vars(r)
 	idUs:=vars["user_id"]
