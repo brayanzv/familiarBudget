@@ -34,5 +34,6 @@ func DetailRegister(w http.ResponseWriter, r *http.Request) {
 		return
 		http.Error(w,"No se pudo registrar el Detalle ", 400)
 	}
+	//este va a ser otro comment
 	w.WriteHeader(http.StatusCreated)
 }
