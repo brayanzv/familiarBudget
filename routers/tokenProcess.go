@@ -26,7 +26,7 @@ func TokenProcess(tk string) (*models.Claim, bool, uint, error) {
 		return keyCode, nil
 	})
 
-	//bla bla bkabkabashf sfh
+
 	if err == nil {
 
 		_, found, _ := bd.CheckUser(claims.Login)

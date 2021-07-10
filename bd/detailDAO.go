@@ -1,6 +1,9 @@
 package bd
 
-import "github.com/brayanzv/FamiliarBudget2/models"
+import (
+	"github.com/brayanzv/FamiliarBudget2/models"
+	"log"
+)
 
 func InsertDetail(d models.Details)(bool,error){
 
@@ -10,4 +13,21 @@ func InsertDetail(d models.Details)(bool,error){
 		return false, err
 	}
 	return true, nil
+}
+func GetDetailsUserDB(id uint, codFamily string )([]*models.GetDetailsID, bool){
+	var searchs []*models.GetDetailsID
+
+	if err := ConectionBD().Table("details").
+		Joins("left join users on users.id = details.id_user").
+		Select("users.*, details.*").Where("id_user = ?",id).Where("cod_familiar =?",codFamily).Scan(&searchs).Error; err != nil{
+
+			log.Fatal(err)
+	}
+	err :=ConectionBD().Close()
+
+	if err != nil{
+		return nil, false
+	}
+
+	return searchs, true
 }

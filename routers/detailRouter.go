@@ -17,7 +17,7 @@ func DetailRegister(w http.ResponseWriter, r *http.Request) {
 	idU,_:=strconv.Atoi(idUs)
 
 	if uint(idU)!=IdUsers{
-		http.Error(w, "id invalido",400)
+		http.Error(w, "id invalido",403)
 		return
 	}
 
@@ -37,4 +37,25 @@ func DetailRegister(w http.ResponseWriter, r *http.Request) {
 	}
 	//este va a ser otro comment
 	w.WriteHeader(http.StatusCreated)
+}
+func GetDetailsUser(w http.ResponseWriter, r *http.Request){
+	vars:=mux.Vars(r)
+	IdUs:=vars["user_id"]
+	codFamily := vars["codFamily"]
+	idU,_ := strconv.Atoi(IdUs)
+
+	if codFamily != CodFamiliar{
+		http.Error(w,"Error en credenciales", 403)
+		return
+	}
+	result, status := bd.GetDetailsUserDB(uint(idU),codFamily)
+
+	if status == false{
+		http.Error(w, "No se pudo realizar la busqueda", 400)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(result)
 }
