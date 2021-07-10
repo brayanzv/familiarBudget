@@ -31,3 +31,21 @@ func GetDetailsUserDB(id uint, codFamily string )([]*models.GetDetailsID, bool){
 
 	return searchs, true
 }
+
+func GetDetailsFamilyDB(codFamily string)([]*models.GetDetailsID, bool){
+	var searchs []*models.GetDetailsID
+
+	if err := ConectionBD().Table("details").
+		Joins("left join users on users.id = details.id_user").
+		Select("users.*, details.*").Where("cod_familiar =?",codFamily).Scan(&searchs).Error; err != nil{
+
+		log.Fatal(err)
+	}
+	err :=ConectionBD().Close()
+
+	if err != nil{
+		return nil, false
+	}
+
+	return searchs, true
+}

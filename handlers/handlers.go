@@ -29,9 +29,9 @@ func Handler() {
 	router.HandleFunc("/family/{codFamily}/users/{user_id}", middlew.ValidatorJWT(routers.UsersFamilyModify)).Methods("PUT")
 
 	//user detalle
-	router.HandleFunc("/users/{user_id}/detail",middlew.ValidatorJWT(routers.DetailRegister)).Methods("POST") //registrar una transaccion
-	router.HandleFunc("/users/{user_id}/detail/{codFamily}", middlew.ValidatorJWT(routers.GetDetailsUser)).Methods("GET") // obtiene todos los detalles del usuario especifico
-
+	router.HandleFunc("/user/{user_id}/detail",middlew.ValidatorJWT(routers.DetailRegister)).Methods("POST") //registrar una transaccion
+	router.HandleFunc("/user/{user_id}/detail/{codFamily}", middlew.ValidatorJWT(routers.GetDetailsUser)).Methods("GET") // obtiene todos los detalles del usuario especifico
+	router.HandleFunc("/user/detail/{codFamily}", middlew.ValidatorJWT(routers.GetDetailsFamily)).Methods("GET")
 	//router.HandleFunc("/transactions/{transaction_id}", middlew.ValidatorJWT(routers.RegisterSpend)).Methods("GET")
 
 	//router.HandleFunc("/users/{user_id}/transactions", middlew.ValidatorJWT(routers.RegisterSpend)).Methods("POST")

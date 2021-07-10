@@ -59,3 +59,23 @@ func GetDetailsUser(w http.ResponseWriter, r *http.Request){
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(result)
 }
+
+func GetDetailsFamily(w http.ResponseWriter, r *http.Request){
+	vars:= mux.Vars(r)
+	codFamily := vars["codFamily"]
+
+	if codFamily != CodFamiliar{
+		http.Error(w,"Credenciales incorrectas",403)
+		return
+	}
+	result, status := bd.GetDetailsFamilyDB(codFamily)
+
+	if status == false{
+		http.Error(w, "No se pudo realizar la busqueda", 400)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(result)
+}
