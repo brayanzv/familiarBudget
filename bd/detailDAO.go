@@ -14,6 +14,7 @@ func InsertDetail(d models.Details)(bool,error){
 	}
 	return true, nil
 }
+
 func GetDetailsUserDB(id uint, codFamily string )([]*models.GetDetailsID, bool){
 	var searchs []*models.GetDetailsID
 
@@ -48,4 +49,13 @@ func GetDetailsFamilyDB(codFamily string)([]*models.GetDetailsID, bool){
 	}
 
 	return searchs, true
+}
+
+func DeleteDetailUserDB(id int) bool{
+
+	if err := ConectionBD().Delete(&models.Details{},id).Error; err != nil{
+		log.Fatal(err)
+		ConectionBD().Close()
+	}
+	return true
 }

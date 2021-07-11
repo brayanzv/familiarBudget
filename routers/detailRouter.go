@@ -38,6 +38,7 @@ func DetailRegister(w http.ResponseWriter, r *http.Request) {
 	//este va a ser otro comment
 	w.WriteHeader(http.StatusCreated)
 }
+
 func GetDetailsUser(w http.ResponseWriter, r *http.Request){
 	vars:=mux.Vars(r)
 	IdUs:=vars["user_id"]
@@ -78,4 +79,19 @@ func GetDetailsFamily(w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(result)
+}
+
+func DeleteDetailUSer(w http.ResponseWriter, r *http.Request){
+	vars:=mux.Vars(r)
+	idUs:=vars["id_user"]
+	idU,_:=strconv.Atoi(idUs)
+
+	if uint(idU)!= IdUsers{
+		http.Error(w,"Error en credenciales", 403)
+		return
+	}
+	status:= bd.DeleteDetailUserDB(idU)
+	if status==true{
+		w.WriteHeader(http.StatusNoContent)
+	}
 }
