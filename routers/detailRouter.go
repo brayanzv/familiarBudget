@@ -83,14 +83,16 @@ func GetDetailsFamily(w http.ResponseWriter, r *http.Request){
 
 func DeleteDetailUSer(w http.ResponseWriter, r *http.Request){
 	vars:=mux.Vars(r)
-	idUs:=vars["id_user"]
+	idUs:=vars["user_id"]
 	idU,_:=strconv.Atoi(idUs)
+	idDe:=vars["id_detail"]
+	idD,_:=strconv.Atoi(idDe)
 
 	if uint(idU)!= IdUsers{
 		http.Error(w,"Error en credenciales", 403)
 		return
 	}
-	status:= bd.DeleteDetailUserDB(idU)
+	status:= bd.DeleteDetailUserDB(idD)
 	if status==true{
 		w.WriteHeader(http.StatusNoContent)
 	}
